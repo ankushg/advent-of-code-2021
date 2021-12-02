@@ -5,7 +5,7 @@ import com.github.ajalt.mordant.terminal.Terminal
 abstract class AdventOfCodeDaySolution<AnswerType>(
     private val dayNumber: String,
     private val part1ExpectedAnswer: AnswerType,
-    private val part2ExpectedAnswer: AnswerType
+    private val part2ExpectedAnswer: AnswerType?
 ) {
     abstract fun part1(input: List<String>): AnswerType
     abstract fun part2(input: List<String>): AnswerType
@@ -35,19 +35,18 @@ abstract class AdventOfCodeDaySolution<AnswerType>(
 
             body {
                 row("1", testResult1, answer1)
-
                 row("2", testResult2, answer2)
             }
         }
         t.println(table)
     }
 
-    private fun test(input: List<String>, expected: AnswerType, block: (List<String>) -> AnswerType): String {
+    private fun test(input: List<String>, expected: AnswerType?, block: (List<String>) -> AnswerType): String {
         val testResult = block(input)
-        return if (testResult == expected) {
-            "Passed ✅"
-        } else {
-            "Failed ❌\n(got $testResult, expected $expected)"
+        return when {
+            expected == null -> "TODO 🚧"
+            testResult == expected -> "Passed ✅"
+            else -> "Failed ❌\n(got $testResult, expected $expected)"
         }
     }
 }

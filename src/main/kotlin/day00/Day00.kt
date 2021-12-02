@@ -9,7 +9,7 @@ fun main() {
 object Day00 : AdventOfCodeDaySolution<Int>(
     dayNumber = "00",
     part1ExpectedAnswer = 0,
-    part2ExpectedAnswer = 0
+    part2ExpectedAnswer = null
 ) {
     override fun part1(input: List<String>): Int {
         return input.size

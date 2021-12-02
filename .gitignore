@@ -1,6 +1,8 @@
 .gradle
 .idea
 build
-src/**/*.txt
-
 local.properties
+.DS_STORE
+
+# Don't commit text files as per author's request
+src/**/*.txt
